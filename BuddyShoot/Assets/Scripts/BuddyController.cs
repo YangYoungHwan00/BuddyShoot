@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuddyController : MonoBehaviour
 {
     public float speed = 10f;
-    public string name = "maru";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,21 +16,22 @@ public class BuddyController : MonoBehaviour
     void Update()
     {   
         if(Input.GetKeyDown(KeyCode.Space))
-        {
             CharacterTag();
-        }
+
+        if(Input.GetKeyDown(KeyCode.K))
+            Shoot();
         
     }
 
     void FixedUpdate() 
     {
-        if(Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.W))
             transform.Translate(0,speed*Time.deltaTime,0);
-        if(Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKey(KeyCode.S))
             transform.Translate(0,-speed*Time.deltaTime,0);
-        if(Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.A))
             transform.Translate(-speed*Time.deltaTime,0,0);
-        if(Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.D))
             transform.Translate(speed*Time.deltaTime,0,0);
     }
 
@@ -51,5 +52,11 @@ public class BuddyController : MonoBehaviour
             b.SetActive(false);
             Debug.Log("bad");
         }
+    }
+
+    void Shoot()
+    {
+        Debug.Log("fire");
+        
     }
 }
