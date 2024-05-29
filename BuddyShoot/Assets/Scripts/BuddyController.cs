@@ -5,22 +5,23 @@ using UnityEngine;
 public class BuddyController : MonoBehaviour
 {
     public float speed = 10f;
+    public int currentHelth;
+    private GameObject[] buddy;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        buddy = new GameObject[transform.childCount];
+        buddy[0] = transform.Find("apple").gameObject;
+        buddy[1] = transform.Find("wow").gameObject;
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    { 
         if(Input.GetKeyDown(KeyCode.Space))
             CharacterTag();
 
-        if(Input.GetKeyDown(KeyCode.K))
-            Shoot();
-        
     }
 
     void FixedUpdate() 
@@ -37,26 +38,21 @@ public class BuddyController : MonoBehaviour
 
     void CharacterTag()
     {
-        GameObject a = transform.GetChild(0).gameObject;
-        GameObject b = transform.GetChild(1).gameObject;
+        // GameObject a = transform.Find("apple").gameObject;
+        // GameObject b = transform.Find("wow").gameObject;
         
-        if(a.activeSelf)
+        if(buddy[0].activeSelf)
         {
-            a.SetActive(false);
-            b.SetActive(true);
+            buddy[0].SetActive(false);
+            buddy[1].SetActive(true);
             Debug.Log("good");
         }
+
         else
         {
-            a.SetActive(true);
-            b.SetActive(false);
+            buddy[0].SetActive(true);
+            buddy[1].SetActive(false);
             Debug.Log("bad");
         }
-    }
-
-    void Shoot()
-    {
-        Debug.Log("fire");
-        
     }
 }
