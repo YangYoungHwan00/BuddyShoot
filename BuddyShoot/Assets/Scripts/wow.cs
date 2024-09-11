@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class apple : Player
+public class wow : Player
 {
-    public string ObjectID = "001";
+    public string ObjectID = "002";
     private string maxHelthKey = "MaxHelth";
     private string curHelthKey = "CurrentHelth";
     private string atkKey = "AttakPoint";
@@ -14,26 +14,23 @@ public class apple : Player
     public int atk;
     public int def;
     StatusManager status;
-    int[] stat;
 
+    // Start is called before the first frame update
     void Start()
     {
-        stat = new int[4];
-        status.InitializeStatus(ObjectID);
-        stat = status.loadStatus(ObjectID);
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
-        Debug.Log(stat[0]);
-       
+        
     }
 
     void Damaged(Bullet b)
     {
         status.curHelth -= b.atk-def;
         status.saveStatus(ObjectID);
-        Debug.Log("으악");
     }
 
     void Dead()
@@ -45,7 +42,6 @@ public class apple : Player
             BuddyController bu = transform.parent.GetComponent<BuddyController>();
             bu.CharacterTag();
         }
-        Debug.Log("Die");
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -53,5 +49,4 @@ public class apple : Player
         if(other.gameObject.CompareTag("Enemy_Bullet"))
             Damaged(b);
     }
-
 }

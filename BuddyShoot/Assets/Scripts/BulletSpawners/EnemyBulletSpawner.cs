@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class EnemyBulletSpawner : BulletSpawner
 {
-    private void Update()
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            Shoot();
-        }
+        Pattern();
     }
     
     public override void Shoot()
@@ -20,5 +17,12 @@ public class EnemyBulletSpawner : BulletSpawner
         bullet.GetComponent<Rigidbody>().velocity = -1 * bullet.transform.up * bulletSpeed;
         Debug.Log("bad");
         Destroy(bullet, 3f);
+    }
+
+    public void Pattern()
+    {
+        int nextShootTime = 1;
+        Shoot();
+        Invoke("Pattern",nextShootTime);
     }
 }

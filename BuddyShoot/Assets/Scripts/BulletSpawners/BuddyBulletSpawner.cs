@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletSpawner : BulletSpawner
+public class BuddyBulletSpawner : BulletSpawner
 {
     private void Update()
     {

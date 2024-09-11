@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int atk = 10;
+    public int atk = 50;
 
     private void OnCollisionEnter(Collision other) {
-        Destroy(gameObject,0.03f);
+        Destroy(gameObject,3f);
         Debug.Log("boom");
     }
 }

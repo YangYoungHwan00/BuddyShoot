@@ -123,6 +123,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &61367900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61367902}
+  - component: {fileID: 61367901}
+  m_Layer: 0
+  m_Name: StatusManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &61367901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61367900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085e85a6b482e4bf9998ef03515af1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHelth: 0
+  curHelth: 0
+  atk: 0
+  def: 0
+--- !u!4 &61367902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61367900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.153303, y: -0.11923146, z: -5.2940793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &220651965
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 392659298}
   - component: {fileID: 392659297}
+  - component: {fileID: 392659299}
   m_Layer: 0
   m_Name: wow
   m_TagString: Player
@@ -342,6 +391,23 @@ Transform:
   - {fileID: 1896616261}
   m_Father: {fileID: 613829078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392659299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392659295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8beab77f0af304f21ba179c88c5d8348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectID: 002
+  maxHelth: 0
+  curHelth: 0
+  atk: 0
+  def: 0
 --- !u!1 &496940264
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  currentHelth: 0
 --- !u!1 &697816931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1256,7 @@ GameObject:
   - component: {fileID: 2026588263}
   - component: {fileID: 2026588264}
   m_Layer: 0
-  m_Name: BulletSpawner
+  m_Name: BulletSpawner3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,6 +1303,7 @@ GameObject:
   - component: {fileID: 2119734413}
   - component: {fileID: 2119734412}
   - component: {fileID: 2119734414}
+  - component: {fileID: 2119734415}
   m_Layer: 0
   m_Name: apple
   m_TagString: Player
@@ -1325,6 +1391,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2129133798f324f59b755cd28aba101c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectID: 001
+  maxHelth: 0
+  curHelth: 0
+  atk: 0
+  def: 0
+--- !u!65 &2119734415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119734409}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 2.67, z: 0.2}
+  m_Center: {x: 0.0000005662441, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1336,3 +1428,4 @@ SceneRoots:
   - {fileID: 220651970}
   - {fileID: 1014328212}
   - {fileID: 1446250048}
+  - {fileID: 61367902}

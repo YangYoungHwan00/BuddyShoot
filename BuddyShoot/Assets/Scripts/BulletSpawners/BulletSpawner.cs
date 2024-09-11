@@ -10,9 +10,8 @@ public class BulletSpawner : MonoBehaviour
     public Transform parentTransform;
     // Update is called once per frame
     
-
     public virtual void Shoot()
-    {   
+    {
         parentTransform = transform.parent;
         GameObject bullet = Instantiate(bulletPrefab, parentTransform.position, Quaternion.identity);
         bullet.layer = LayerMask.NameToLayer("Player_Bullet");

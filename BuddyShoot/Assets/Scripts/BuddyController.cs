@@ -5,7 +5,6 @@ using UnityEngine;
 public class BuddyController : MonoBehaviour
 {
     public float speed = 10f;
-    public int currentHelth;
     private GameObject[] buddy;
 
     // Start is called before the first frame update
@@ -20,8 +19,9 @@ public class BuddyController : MonoBehaviour
     void Update()
     { 
         if(Input.GetKeyDown(KeyCode.Space))
+        {
             CharacterTag();
-
+        }
     }
 
     void FixedUpdate() 
@@ -36,7 +36,7 @@ public class BuddyController : MonoBehaviour
             transform.Translate(speed*Time.deltaTime,0,0);
     }
 
-    void CharacterTag()
+    public void CharacterTag()
     {
         // GameObject a = transform.Find("apple").gameObject;
         // GameObject b = transform.Find("wow").gameObject;
