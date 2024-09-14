@@ -6,13 +6,18 @@ public class BuddyController : MonoBehaviour
 {
     public float speed = 10f;
     private GameObject[] buddy;
+    public int maxHelth = 100;
+    public int curHelth;
+    public int atk = 100;
+    public int def = 100;
 
     // Start is called before the first frame update
     void Awake()
     {
         buddy = new GameObject[transform.childCount];
         buddy[0] = transform.Find("apple").gameObject;
-        buddy[1] = transform.Find("wow").gameObject;
+        buddy[1] = transform.Find("wow").gameObject;  
+        curHelth = maxHelth; 
     }
 
     // Update is called once per frame

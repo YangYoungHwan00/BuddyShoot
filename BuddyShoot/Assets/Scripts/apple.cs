@@ -1,39 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class apple : Player
 {
     public string ObjectID = "001";
-    private string maxHelthKey = "MaxHelth";
-    private string curHelthKey = "CurrentHelth";
-    private string atkKey = "AttakPoint";
-    private string defKey = "DeffensePoint";
     public int maxHelth;
     public int curHelth;
     public int atk;
     public int def;
-    StatusManager status;
-    int[] stat;
+    Transform parent;
+    BuddyController player;
 
     void Start()
     {
-        stat = new int[4];
-        status.InitializeStatus(ObjectID);
-        stat = status.loadStatus(ObjectID);
+        parent = transform.parent;
+        player = parent.GetComponent<BuddyController>();
+        maxHelth = player.maxHelth;
+        curHelth = player.curHelth;
+        atk = player.atk;
+        def = player.def;
     }
 
     void Update()
     {
-        Debug.Log(stat[0]);
-       
+        //Debug.Log(stat[0]);
+        player.curHelth = curHelth;
     }
 
-    void Damaged(Bullet b)
+    public override int Damaged(int hp, int atk, int def)
     {
-        status.curHelth -= b.atk-def;
-        status.saveStatus(ObjectID);
-        Debug.Log("으악");
+        hp -= Convert.ToInt32((float)player.atk/(float)player.def);
+        Debug.Log(player.curHelth);
+        return hp;
     }
 
     void Dead()
@@ -49,9 +50,8 @@ public class apple : Player
     }
 
     private void OnCollisionEnter(Collision other) {
-        Bullet b = other.gameObject.GetComponent<Bullet>();
-        if(other.gameObject.CompareTag("Enemy_Bullet"))
-            Damaged(b);
+        if(!other.gameObject.CompareTag("PlayerBullet"))
+            curHelth = Damaged(curHelth, atk, def);
     }
 
 }

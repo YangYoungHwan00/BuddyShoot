@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : Bullet
 {
-    public int atk = 50;
-
     private void OnCollisionEnter(Collision other) {
-        Destroy(gameObject,3f);
-        Debug.Log("boom");
+        if(!other.gameObject.CompareTag("Enemy"))
+            Destroy(gameObject);
     }
 }

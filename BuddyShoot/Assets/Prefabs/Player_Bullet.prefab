@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5698776814157991372}
   - component: {fileID: 5890829648346324775}
   - component: {fileID: 5542867697105811101}
-  - component: {fileID: -2897169944215266918}
+  - component: {fileID: 8207119109725415746}
   m_Layer: 0
   m_Name: Player_Bullet
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2897169944215266918
+--- !u!114 &8207119109725415746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4077020759310228022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1697ef6236544ca2af83454a81385ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 0beea95d9e60e4158bfcec061dac5a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyTime: 2

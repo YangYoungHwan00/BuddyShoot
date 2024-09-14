@@ -7,7 +7,9 @@ TagManager:
   - Maru
   - yuta
   - Enemy
-  - Bullet
+  - BulletSpawner
+  - PlayerBullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UI_Manager : MonoBehaviour
 {
-    [SerializeField]
+[SerializeField]
     private UnityEngine.UI.Slider hpBar;
     private GameObject buddyController;
     

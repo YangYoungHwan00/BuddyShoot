@@ -5,32 +5,36 @@ using UnityEngine;
 public class wow : Player
 {
     public string ObjectID = "002";
-    private string maxHelthKey = "MaxHelth";
-    private string curHelthKey = "CurrentHelth";
-    private string atkKey = "AttakPoint";
-    private string defKey = "DeffensePoint";
     public int maxHelth;
     public int curHelth;
     public int atk;
     public int def;
     StatusManager status;
+    Transform parent;
+    BuddyController player;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        parent = transform.parent;
+        player = parent.GetComponent<BuddyController>();
+        maxHelth = player.maxHelth;
+        curHelth = player.curHelth;
+        atk = player.atk;
+        def = player.def;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        player.curHelth = curHelth;
     }
 
-    void Damaged(Bullet b)
+    public override int Damaged(int hp, int atk ,int def)
     {
-        status.curHelth -= b.atk-def;
-        status.saveStatus(ObjectID);
+        hp -= atk;
+        Debug.Log(hp);
+        return hp;
     }
 
     void Dead()
@@ -45,8 +49,6 @@ public class wow : Player
     }
 
     private void OnCollisionEnter(Collision other) {
-        Bullet b = other.gameObject.GetComponent<Bullet>();
-        if(other.gameObject.CompareTag("Enemy_Bullet"))
-            Damaged(b);
+        curHelth = Damaged(curHelth,atk,def);
     }
 }
