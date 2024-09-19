@@ -11,13 +11,15 @@ public class BuddyController : MonoBehaviour
     public int atk = 100;
     public int def = 100;
     public GameObject gameover;
+    private GameObject buddyUI;
 
     // Start is called before the first frame update
     void Awake()
     {
         buddy = new GameObject[transform.childCount];
         buddy[0] = transform.Find("apple").gameObject;
-        buddy[1] = transform.Find("wow").gameObject;  
+        buddy[1] = transform.Find("wow").gameObject;
+        buddyUI = GameObject.Find("buddyUI");
         curHelth = maxHelth;
     }
 
@@ -32,7 +34,7 @@ public class BuddyController : MonoBehaviour
         if(curHelth <= 0)
             Dead();
 
-        Debug.Log(gameover);
+        Debug.Log(buddyUI);
     }
 
     void FixedUpdate() 
@@ -56,6 +58,10 @@ public class BuddyController : MonoBehaviour
         {
             buddy[0].SetActive(false);
             buddy[1].SetActive(true);
+            // buddyUI[0].SetActive(false);
+            // buddyUI[1].SetActive(true);
+            buddyUI.transform.Find("m").gameObject.SetActive(false);
+            buddyUI.transform.Find("w").gameObject.SetActive(true);
             Debug.Log("good");
         }
 
@@ -63,6 +69,10 @@ public class BuddyController : MonoBehaviour
         {
             buddy[0].SetActive(true);
             buddy[1].SetActive(false);
+            // buddyUI[0].SetActive(true);
+            // buddyUI[1].SetActive(false);
+            buddyUI.transform.Find("m").gameObject.SetActive(true);
+            buddyUI.transform.Find("w").gameObject.SetActive(false);
             Debug.Log("bad");
         }
     }
