@@ -32,6 +32,5 @@ public class HpBar : MonoBehaviour
     {
         hp_prop = (float)player.curHelth/(float)maxHelth;
         helthBar.fillAmount = hp_prop;
-        Debug.Log(hp_prop+"ww");
     }
 }

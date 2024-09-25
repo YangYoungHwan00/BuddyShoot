@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerBullet : Bullet
 {
-    private void OnCollisionEnter(Collision other) {
-        if(!other.gameObject.CompareTag("Player"))
+    private void OnTriggerEnter(Collider other) {
+        if(!(other.gameObject.CompareTag("Player")||other.gameObject.CompareTag("EnemyBullet")))
             Destroy(gameObject);
     }
 }

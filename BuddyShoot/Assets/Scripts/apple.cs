@@ -33,7 +33,6 @@ public class apple : Player
     public override int Damaged(int hp, int atk, int def)
     {
         hp -= Convert.ToInt32((float)player.atk/(float)player.def);
-        Debug.Log(player.curHelth);
         return hp;
     }
 
@@ -49,9 +48,10 @@ public class apple : Player
         Debug.Log("Die");
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other) {
         if(!other.gameObject.CompareTag("PlayerBullet"))
             curHelth = Damaged(curHelth, atk, def);
+        Debug.Log("Hit!!!!!!");
     }
 
 }

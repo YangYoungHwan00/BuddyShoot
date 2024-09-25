@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class wow : Player
 {
@@ -14,7 +15,7 @@ public class wow : Player
     BuddyController player;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         parent = transform.parent;
         player = parent.GetComponent<BuddyController>();
@@ -27,13 +28,13 @@ public class wow : Player
     // Update is called once per frame
     void Update()
     {
-        player.curHelth = curHelth;
+        curHelth = player.curHelth;
     }
 
-    public override int Damaged(int hp, int atk ,int def)
+    public override int Damaged(int hp, int atk, int def)
     {
-        hp -= atk;
-        Debug.Log(hp);
+        hp -= Convert.ToInt32((float)player.atk/(float)player.def);
+        Debug.Log(player.curHelth);
         return hp;
     }
 
@@ -48,7 +49,9 @@ public class wow : Player
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-        curHelth = Damaged(curHelth,atk,def);
+    private void OnTriggerEnter(Collider other) {
+        if(!other.gameObject.CompareTag("PlayerBullet"))
+            curHelth = Damaged(curHelth, atk, def);
+        Debug.Log("Hit");
     }
 }
