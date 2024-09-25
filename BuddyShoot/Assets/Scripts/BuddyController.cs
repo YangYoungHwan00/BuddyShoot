@@ -6,14 +6,14 @@ public class BuddyController : MonoBehaviour
 {
     public float speed = 10f;
     private GameObject[] buddy;
+    private GameObject[] buddyBulletSpawner;
     public int maxHelth = 100;
     public int curHelth;
     public int atk = 100;
     public int def = 100;
     public GameObject gameover;
     private GameObject buddyUI;
-    private BuddyBulletSpawner bs1;
-    private BuddyBulletSpawner bs2;
+    private bool canShoot = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,6 +21,9 @@ public class BuddyController : MonoBehaviour
         buddy = new GameObject[transform.childCount];
         buddy[0] = transform.Find("apple").gameObject;
         buddy[1] = transform.Find("wow").gameObject;
+        buddyBulletSpawner = new GameObject[transform.childCount];
+        buddyBulletSpawner[0] = buddy[0].transform.Find("Bullet Spawner").gameObject;
+        buddyBulletSpawner[1] = buddy[1].transform.Find("Bullet Spawner2").gameObject;
         buddyUI = GameObject.Find("buddyUI");
         curHelth = maxHelth;
     }
@@ -28,7 +31,7 @@ public class BuddyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space)&&canShoot)
         {
             CharacterTag();
         }
@@ -60,6 +63,8 @@ public class BuddyController : MonoBehaviour
             buddy[1].SetActive(true);
             buddyUI.transform.Find("m").gameObject.SetActive(false);
             buddyUI.transform.Find("w").gameObject.SetActive(true);
+            buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().StartCoroutine(
+                buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().Shoot());
             Debug.Log("good");
         }
 
@@ -69,13 +74,23 @@ public class BuddyController : MonoBehaviour
             buddy[1].SetActive(false);
             buddyUI.transform.Find("m").gameObject.SetActive(true);
             buddyUI.transform.Find("w").gameObject.SetActive(false);
+            buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().StartCoroutine(
+                buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().Shoot());
             Debug.Log("bad");
         }
+        StartCoroutine(tagCoolDown());
     }
 
     void Dead()
     {
         gameover.SetActive(true);
+    }
+
+    IEnumerator tagCoolDown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(1.5f);
+        canShoot = true;
     }
     
 }

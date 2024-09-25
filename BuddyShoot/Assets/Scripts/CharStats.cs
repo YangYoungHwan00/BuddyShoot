@@ -6,6 +6,4 @@ public class CharStats : MonoBehaviour
 {
     public int maxHelth;
     public int curHelth{get; private set;}
-
-    
 }

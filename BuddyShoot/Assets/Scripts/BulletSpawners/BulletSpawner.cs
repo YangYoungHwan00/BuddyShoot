@@ -19,5 +19,5 @@ public class BulletSpawner : MonoBehaviour
     //     Debug.Log(bullet.layer);
     //     Destroy(bullet, 3f);
     // }
-
+    
 }
