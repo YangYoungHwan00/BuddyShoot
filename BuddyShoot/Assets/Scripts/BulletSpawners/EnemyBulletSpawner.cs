@@ -16,7 +16,6 @@ public class EnemyBulletSpawner : BulletSpawner
         GameObject bullet = Instantiate(bulletPrefab, parentTransform.position + new Vector3(0,-2,0), Quaternion.identity);
         bullet.layer = LayerMask.NameToLayer("Enemy_Bullet");
         bullet.GetComponent<Rigidbody>().velocity = -1 * bullet.transform.up * bulletSpeed;
-        Debug.Log("bad");
         Destroy(bullet, 3f);
     }
 

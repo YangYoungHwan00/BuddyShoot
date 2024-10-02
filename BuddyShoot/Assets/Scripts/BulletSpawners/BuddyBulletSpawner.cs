@@ -15,9 +15,8 @@ public class BuddyBulletSpawner : BulletSpawner
         while(true) 
         {
             GameObject bullet = Instantiate(bulletPrefab, parentTransform.position, Quaternion.identity);
-            bullet.layer = LayerMask.NameToLayer("Player_Bullet");
+            bullet.layer = LayerMask.NameToLayer("Buddy_Bullet");
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.up * bulletSpeed;
-            Debug.Log("good");
             Destroy(bullet, 3f);
             yield return new WaitForSeconds(1.5f);
         }      

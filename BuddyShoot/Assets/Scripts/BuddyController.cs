@@ -19,8 +19,8 @@ public class BuddyController : MonoBehaviour
     void Awake()
     {
         buddy = new GameObject[transform.childCount];
-        buddy[0] = transform.Find("apple").gameObject;
-        buddy[1] = transform.Find("wow").gameObject;
+        buddy[0] = transform.Find("Yuta").gameObject;
+        buddy[1] = transform.Find("Maru").gameObject;
         buddyBulletSpawner = new GameObject[transform.childCount];
         buddyBulletSpawner[0] = buddy[0].transform.Find("Bullet Spawner").gameObject;
         buddyBulletSpawner[1] = buddy[1].transform.Find("Bullet Spawner2").gameObject;

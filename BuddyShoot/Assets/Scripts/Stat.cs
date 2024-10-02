@@ -1,15 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Stat
 {
-    [SerializeField]
-    private int baseStat;
-    
-    public int GetStat()
+    public float Hp;
+    public float Atk;
+    public float Def;
+
+    public Stat()
     {
-        return baseStat;
+        Hp = 1;
+        Atk =1;
+        Def = 1;
+    }
+
+    public Stat(float hp, float atk, float def)
+    {        
+        Hp = hp;
+        Atk = atk;
+        Def = def;        
     }
 }
+

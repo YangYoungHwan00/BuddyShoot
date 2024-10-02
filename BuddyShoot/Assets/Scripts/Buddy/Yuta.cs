@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class apple : Player
+public class Yuta : Buddy
 {
     public string ObjectID = "001";
     public int maxHelth;
@@ -13,7 +13,7 @@ public class apple : Player
     public int def;
     Transform parent;
     BuddyController player;
-
+    
     void Start()
     {
         parent = transform.parent;
@@ -30,28 +30,15 @@ public class apple : Player
         player.curHelth = curHelth;
     }
 
-    public override int Damaged(int hp, int atk, int def)
+    public override int TakeDamage(int hp, int atk, int def)
     {
         hp -= Convert.ToInt32((float)player.atk/(float)player.def);
         return hp;
     }
 
-    void Dead()
-    {
-        GameObject wow = transform.Find("wow").gameObject;
-        wow b = wow.GetComponent<wow>();
-        if(b.curHelth>0)
-        {
-            BuddyController bu = transform.parent.GetComponent<BuddyController>();
-            bu.CharacterTag();
-        }
-        Debug.Log("Die");
-    }
-
     private void OnTriggerEnter(Collider other) {
-        if(!other.gameObject.CompareTag("PlayerBullet"))
-            curHelth = Damaged(curHelth, atk, def);
-        Debug.Log("Hit!!!!!!");
+        if(!other.gameObject.CompareTag("BuddyBullet"))
+            curHelth = TakeDamage(curHelth, atk, def);
     }
 
 }

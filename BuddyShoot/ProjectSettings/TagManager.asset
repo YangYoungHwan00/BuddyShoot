@@ -4,12 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Maru
-  - yuta
   - Enemy
   - BulletSpawner
-  - PlayerBullet
   - EnemyBullet
+  - BuddyBullet
   layers:
   - Default
   - TransparentFX
@@ -17,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Player_Bullet
+  - Buddy_Bullet
   - Enemy_Bullet
   - 
   - 

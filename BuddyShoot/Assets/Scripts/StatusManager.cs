@@ -1,58 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class StatusManager : MonoBehaviour
 {
-    private string maxHelthKey = "MaxHelth";
-    private string curHelthKey = "CurrentHelth";
-    private string atkKey = "AttakPoint";
-    private string defKey = "DeffensePoint";
-    public int maxHelth;
-    public int curHelth;
-    public int atk;
-    public int def;
-    // Start is called before the first frame update
-    void Start()
+    // Stat stat = new Stat(10f, 10f, 10f);
+    // string json = JsonUtility.ToJson(stat);
+    // string filePath = Application.persistentDataPath + "/stat.json";
+    string filePath = "Assets/Data" + "/stat.json";
+    Stat stat;
+
+    public void SaveData()
     {
-        // if(!PlayerPrefs.HasKey(maxHelthKey))
-        //     InitializeStatus();
+    	// myObject에는 위 예시 userData와 같은 object가 들어갑니다.
+        stat = new Stat(10,20,30);
+        string jsonStr = JsonUtility.ToJson(stat);
+        File.WriteAllText(filePath, jsonStr);
+        Debug.Log($"Save Completed : {filePath}");
     }
 
-    // Update is called once per frame
+    public void ReadData()
+    {
+        var loadedData = File.ReadAllText(filePath);
+        Stat myStat = JsonUtility.FromJson<Stat>(loadedData.ToString());
+        Debug.Log(myStat.Atk);
+    }
+
     void Update()
     {
-        
-    }
-
-    public void InitializeStatus(string ObjectID)
-    {
-        PlayerPrefs.SetInt(ObjectID+maxHelthKey,100);
-        PlayerPrefs.SetInt(ObjectID+curHelthKey,100);
-        PlayerPrefs.SetInt(ObjectID+atkKey,10);
-        PlayerPrefs.SetInt(ObjectID+defKey,10);
-        PlayerPrefs.Save();
-    }
-
-    public void saveStatus(string ObjectID)
-    {
-        PlayerPrefs.SetInt(ObjectID+maxHelthKey,maxHelth);
-        PlayerPrefs.SetInt(ObjectID+curHelthKey,curHelth);
-        PlayerPrefs.SetInt(ObjectID+atkKey,atk);
-        PlayerPrefs.SetInt(ObjectID+defKey,def);
-    }
-
-    public int[] loadStatus(string ObjectID)
-    {
-        int[] a= new int[4];
-        maxHelth = PlayerPrefs.GetInt(ObjectID+maxHelthKey);
-        curHelth = PlayerPrefs.GetInt(ObjectID+curHelthKey);
-        atk = PlayerPrefs.GetInt(ObjectID+atkKey);
-        def = PlayerPrefs.GetInt(ObjectID+defKey);
-        a[0] = maxHelth;
-        a[1] = curHelth;
-        a[2] = atk;
-        a[3] = def;
-        return a;
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            SaveData();
+            Debug.Log("ggod");
+        }
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            ReadData();
+        }
     }
 }
