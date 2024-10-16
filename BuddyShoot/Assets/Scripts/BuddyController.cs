@@ -64,7 +64,7 @@ public class BuddyController : MonoBehaviour
             buddyUI.transform.Find("m").gameObject.SetActive(false);
             buddyUI.transform.Find("w").gameObject.SetActive(true);
             buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().StartCoroutine(
-                buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().Shoot());
+                buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().Shoot(2f));
             Debug.Log("good");
         }
 
@@ -75,7 +75,7 @@ public class BuddyController : MonoBehaviour
             buddyUI.transform.Find("m").gameObject.SetActive(true);
             buddyUI.transform.Find("w").gameObject.SetActive(false);
             buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().StartCoroutine(
-                buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().Shoot());
+                buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().Shoot(2f));
             Debug.Log("bad");
         }
         StartCoroutine(tagCoolDown());

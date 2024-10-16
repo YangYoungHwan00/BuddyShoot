@@ -16,18 +16,17 @@ public class UI_Manager : MonoBehaviour
         buddyController = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartGame()
     {
-    
+        SceneManager.LoadScene("SampleScene");
     }
 
-    public void openStage()
+    public void OpenStage()
     {
         something.SetActive(true);
     }
 
-    public void closeStage()
+    public void CloseStage()
     {
         something.SetActive(false);
     }
@@ -35,5 +34,15 @@ public class UI_Manager : MonoBehaviour
     public void GotoStage1()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void OpenUpgrade()
+    {
+        something.SetActive(true);
+    }
+    
+    public void CloseUpgrade()
+    {
+        something.SetActive(false);
     }
 }

@@ -8,7 +8,6 @@ public class BulletSpawner : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed;
     public Transform parentTransform;
-    // Update is called once per frame
     
     // public virtual void Shoot()
     // {

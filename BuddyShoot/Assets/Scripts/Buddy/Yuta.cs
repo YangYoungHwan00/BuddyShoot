@@ -36,7 +36,7 @@ public class Yuta : Buddy
         return hp;
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if(!other.gameObject.CompareTag("BuddyBullet"))
             curHelth = TakeDamage(curHelth, atk, def);
     }

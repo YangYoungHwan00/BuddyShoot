@@ -7,34 +7,18 @@ public class BuddyBulletSpawner : BulletSpawner
     private void Start()
     {
         parentTransform = transform.parent;
-        StartCoroutine(Shoot());
+        StartCoroutine(Shoot(1f));
     }
 
-    public IEnumerator Shoot()
+    public IEnumerator Shoot(float interval)
     {
         while(true) 
         {
-            GameObject bullet = Instantiate(bulletPrefab, parentTransform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, parentTransform.position+new Vector3(0,0,-1), Quaternion.identity);
             bullet.layer = LayerMask.NameToLayer("Buddy_Bullet");
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.up * bulletSpeed;
+            bullet.GetComponent<Rigidbody2D>().velocity = parentTransform.up * bulletSpeed;
             Destroy(bullet, 3f);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(interval);
         }      
     }
-
-    // public void Shoot()
-    // {
-    //     GameObject bullet = Instantiate(bulletPrefab, parentTransform.position + new Vector3(0,-2,0), Quaternion.identity);
-    //     bullet.layer = LayerMask.NameToLayer("Enemy_Bullet");
-    //     bullet.GetComponent<Rigidbody>().velocity = bullet.transform.up * bulletSpeed;
-    //     Debug.Log("bad");
-    //     Destroy(bullet, 3f);
-    // }
-
-    // void Pattern()
-    // {
-    //     float nextShootTime = 1.3f;
-    //     Shoot();
-    //     Invoke("Pattern",nextShootTime);
-    // }
 }

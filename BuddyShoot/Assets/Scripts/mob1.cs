@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class mob1 : Enemy
 {
-    GameObject player;
-    // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
-        player = GameObject.Find("Buddy");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        MoveToBuddy(4f);
     }
 }

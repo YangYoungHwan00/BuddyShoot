@@ -8,30 +8,23 @@ public class EnemyBulletSpawner : BulletSpawner
     {
         //Pattern();
         parentTransform = transform.parent;
-        StartCoroutine(atkPattern());
+        StartCoroutine(atkPattern(2f));
     }
     
     public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, parentTransform.position + new Vector3(0,-2,0), Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, parentTransform.position+new Vector3(0,0,-1), Quaternion.identity);
         bullet.layer = LayerMask.NameToLayer("Enemy_Bullet");
-        bullet.GetComponent<Rigidbody>().velocity = -1 * bullet.transform.up * bulletSpeed;
+        bullet.GetComponent<Rigidbody2D>().velocity = -1 * bullet.transform.up * bulletSpeed;
         Destroy(bullet, 3f);
     }
 
-    // public void Pattern()
-    // {
-    //     int nextShootTime = 1;
-    //     Shoot();
-    //     Invoke("Pattern",nextShootTime);
-    // }
-
-    IEnumerator atkPattern()
+    IEnumerator atkPattern(float interval)
     {
         while(true)
         {
             Shoot();
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(interval);
         }
     }
 }
