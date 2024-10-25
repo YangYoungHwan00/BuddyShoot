@@ -8,6 +8,7 @@ public class Buddy : MonoBehaviour
     public float Atk {get; set;}
     public float Def {get; set;}
     public float MoveSpeed {get; set;}
+    public SpriteRenderer spRenderer;
 
     public Buddy()
     {
@@ -28,4 +29,5 @@ public class Buddy : MonoBehaviour
         hp -= Convert.ToInt32(atk/def)*20;
         return hp;
     }
+    
 }

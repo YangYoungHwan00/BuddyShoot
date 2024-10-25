@@ -14,6 +14,7 @@ public class BuddyController : MonoBehaviour
     public GameObject gameover;
     private GameObject buddyUI;
     private bool canShoot = true;
+    public Vector2 lastDir = Vector2.up;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +27,8 @@ public class BuddyController : MonoBehaviour
         buddyBulletSpawner[1] = buddy[1].transform.Find("Bullet Spawner2").gameObject;
         buddyUI = GameObject.Find("buddyUI");
         curHelth = maxHelth;
+        buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().StartCoroutine(
+                buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().CloseShot(1f));
     }
 
     // Update is called once per frame
@@ -42,14 +45,24 @@ public class BuddyController : MonoBehaviour
 
     void FixedUpdate() 
     {
-        if(Input.GetKey(KeyCode.W))
-            transform.Translate(0,speed*Time.deltaTime,0);
-        if(Input.GetKey(KeyCode.S))
-            transform.Translate(0,-speed*Time.deltaTime,0);
-        if(Input.GetKey(KeyCode.A))
-            transform.Translate(-speed*Time.deltaTime,0,0);
-        if(Input.GetKey(KeyCode.D))
-            transform.Translate(speed*Time.deltaTime,0,0);
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+        Vector2 moveDir = new Vector2(moveX,moveY);
+        if(moveX!=0||moveY!=0)
+            lastDir = moveDir;
+
+        if(moveDir != Vector2.zero)
+        {
+            transform.Translate(moveDir*speed*Time.deltaTime);
+        }
+        // if(Input.GetKey(KeyCode.W))
+        //     transform.Translate(0,speed*Time.deltaTime,0);
+        // if(Input.GetKey(KeyCode.S))
+        //     transform.Translate(0,-speed*Time.deltaTime,0);
+        // if(Input.GetKey(KeyCode.A))
+        //     transform.Translate(-speed*Time.deltaTime,0,0);
+        // if(Input.GetKey(KeyCode.D))
+        //     transform.Translate(speed*Time.deltaTime,0,0);
     }
 
     public void CharacterTag()
@@ -64,7 +77,7 @@ public class BuddyController : MonoBehaviour
             buddyUI.transform.Find("m").gameObject.SetActive(false);
             buddyUI.transform.Find("w").gameObject.SetActive(true);
             buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().StartCoroutine(
-                buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().Shoot(2f));
+                buddyBulletSpawner[1].GetComponent<BuddyBulletSpawner>().LongShot(1f,2));
             Debug.Log("good");
         }
 
@@ -75,7 +88,7 @@ public class BuddyController : MonoBehaviour
             buddyUI.transform.Find("m").gameObject.SetActive(true);
             buddyUI.transform.Find("w").gameObject.SetActive(false);
             buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().StartCoroutine(
-                buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().Shoot(2f));
+                buddyBulletSpawner[0].GetComponent<BuddyBulletSpawner>().CloseShot(1f));
             Debug.Log("bad");
         }
         StartCoroutine(tagCoolDown());

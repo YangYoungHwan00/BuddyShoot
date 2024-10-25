@@ -26,7 +26,11 @@ public class Yuta : Buddy
 
     void Update()
     {
-        //Debug.Log(stat[0]);
+        
+        if(Input.GetAxis("Horizontal")>0)
+            spRenderer.flipX = true;
+        if(Input.GetAxis("Horizontal")<0)
+            spRenderer.flipX = false;
         player.curHelth = curHelth;
     }
 
@@ -38,7 +42,9 @@ public class Yuta : Buddy
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(!other.gameObject.CompareTag("BuddyBullet"))
+        {
             curHelth = TakeDamage(curHelth, atk, def);
+        }
     }
-
 }
+
